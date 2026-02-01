@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>{{ post.title }}</title>
+</head>
+<body>
+
+<article>
+    <h1>{{ post.title }}</h1>
+
+    <p>
+        <small>
+            Publicado em {{ post.created_at|date:"d/m/Y" }}
+        </small>
+    </p>
+
+    <hr>
+
+    <div class="post-content">
+        {{ content|safe }}
+    </div>
+</article>
+
+<p>
+    <a href="/blog/">← Voltar para o blog</a>
+</p>
+
+</body>
+</html>

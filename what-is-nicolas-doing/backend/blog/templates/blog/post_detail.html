@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <small>{{ post.created_at }}</small>
+
+    <hr>
+
+    {{ post.content|linebreaks }}
+</body>
+</html>

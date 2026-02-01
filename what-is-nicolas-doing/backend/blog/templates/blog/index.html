@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>O que o Nícolas tem feito?</title>
+</head>
+<body>
+    <h1>O que o Nícolas tem feito?</h1>
+
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'post_detail' post.slug %}">
+                    {{ post.title }}
+                </a>
+                <small>{{ post.created_at }}</small>
+            </li>
+        {% empty %}
+            <li>Nenhum post publicado ainda.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
