@@ -130,7 +130,6 @@ sudo docker-compose up --build
 sudo docker compose down -v
 sudo docker compose build --no-cache
 sudo docker compose up
-
 ```
 
 Então é possível acessar
@@ -138,6 +137,30 @@ Então é possível acessar
 - admin: `http://127.0.0.1:8000/admin/`
 
 Nesse momento, já teremos também os arquivos `Procfile` e `runtime.txt` na raiz do projeto.
+
+##  Sobre Docker
+Use os comandos conforme necessário, enquanto a aplicação está sendo construída:
+
+```sh
+//  ver quanto espaço foi tomado
+docker system df
+
+//  limpar contâiners antigos
+docker system prune
+
+//  limpar volumes órfãos
+docker volume prune
+```
+
+##  Sobre Docker Compose
+```sh
+//  dia-a-dia desenvolvimento
+docker compose up --build
+
+//  quando algo dá errado
+docker compose down
+docker system prune
+```
 
 # Deploy
 Produção alvo: Railway
