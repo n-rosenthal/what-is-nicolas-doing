@@ -6,8 +6,12 @@
 
 from django.db import models
 from django.utils.text import slugify
+from django.urls import reverse
 
-from django.db import models
+from .markdown.renderer import render_markdown
+
+def get_absolute_url(self):
+    return reverse("blog:post_detail", args=[self.slug])
 
 
 class Post(models.Model):
@@ -18,7 +22,8 @@ class Post(models.Model):
         unique=True,
     )
 
-    content = models.TextField()
+    markdown = models.TextField(null=True, blank=True)
+    html = models.TextField(null=True, editable=False)
 
     published = models.BooleanField(default=False)
     pinned = models.BooleanField(default=False)
@@ -28,3 +33,8 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+    
+    def save(self, *args, **kwargs):
+        self.html = render_markdown(self.markdown)
+        super().save(*args, **kwargs)
