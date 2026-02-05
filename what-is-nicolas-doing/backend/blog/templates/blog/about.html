@@ -1,14 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Sobre</title>
-</head>
-<body>
-    <h1>Sobre</h1>
+{% extends "blog/base.html" %}
+{% load static %}
 
-    <p>
-        Blog pessoal de `nícolas-rosenthal` para registrar estudos,
-        projetos e experimentos em computação.
-    </p>
-</body>
-</html>
+{% block title %}Sobre{% endblock %}
+
+{% block content %}
+<article class="about-page">
+    <h1><code>sobre</code></h1>
+    
+    <div class="about-content">
+        <p>
+            Blog pessoal de <code>nícolas-rosenthal</code> para registrar estudos,
+            projetos e experimentos em computação.
+        </p>
+        
+        <div class="about-details">
+            <h2><code>sobre o blog</code></h2>
+            <p>Este espaço é dedicado a compartilhar aprendizados, experimentos técnicos e projetos em desenvolvimento.</p>
+            
+            <h2><code>objetivos</code></h2>
+            <ul>
+                <li>Documentar processos de aprendizagem</li>
+                <li>Compartilhar soluções para problemas técnicos</li>
+                <li>Criar um portfólio de projetos</li>
+                <li>Contribuir com a comunidade de desenvolvedores</li>
+            </ul>
+        </div>
+    </div>
+</article>
+{% endblock %}

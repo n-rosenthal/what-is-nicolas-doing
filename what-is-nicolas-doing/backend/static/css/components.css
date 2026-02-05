@@ -1,0 +1,233 @@
+/* components.css */
+
+/* Cards */
+.post-card {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 2rem 0;
+    background: var(--surface);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.post-card-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+/* Pagination */
+.pagination {
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.pagination-content {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    background: var(--surface);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+}
+
+.pagination-link {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.pagination-link:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.pagination-current {
+    padding: 0.5rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+/* Tags */
+.tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--primary);
+    transition: var(--transition);
+}
+
+.tag:hover {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--muted);
+}
+
+.empty-state p:first-child {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Search and filters */
+.posts-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    display: flex;
+    flex: 1;
+    max-width: 400px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-right: none;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    background: var(--surface);
+    color: var(--fg);
+}
+
+.search-box button {
+    padding: 0.75rem 1.5rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.search-box button:hover {
+    background: var(--primary-hover);
+}
+
+/* Post navigation */
+.post-navigation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.nav-link {
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    background: var(--surface);
+}
+
+.nav-link:hover {
+    transform: translateX(5px);
+    border-color: var(--primary);
+}
+
+.nav-prev:hover {
+    transform: translateX(-5px);
+}
+
+.nav-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+}
+
+/* Table of contents */
+.table-of-contents {
+    padding: 1.5rem;
+    margin: 2rem 0;
+    background: var(--surface);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary);
+}
+
+.table-of-contents ul {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+.table-of-contents li {
+    margin: 0.5rem 0;
+    list-style-type: none;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.table-of-contents li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+}
+
+/* Author section */
+.post-author {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 2rem;
+    margin: 3rem 0;
+    background: var(--surface);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+}
+
+.author-avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Responsive components */
+@media (max-width: 768px) {
+    .post-card {
+        grid-template-columns: 1fr;
+    }
+    
+    .posts-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-box {
+        max-width: 100%;
+    }
+    
+    .post-navigation {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .post-author {
+        flex-direction: column;
+        text-align: center;
+    }
+}

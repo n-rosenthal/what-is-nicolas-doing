@@ -1,65 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}Blog{% endblock %}</title>
+    <title>{% block title %}Nícolas Rosenthal{% endblock %}</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pygments.css' %}">
 
     {% block extra_head %}{% endblock %}
 </head>
 <body>
 
-<header>
-    <h1>
-        <a href="{% url 'blog:index' %}">
-            O que o Nícolas tem feito?
-        </a>
-    </h1>
-    <hr>
+<header class="site-header">
+    <a href="{% url 'blog:index' %}" class="site-title">Nícolas Rosenthal</a>
 </header>
 
-<main>
+<main class="content">
     {% block content %}{% endblock %}
 </main>
 
-<hr>
-
-<footer>
-    <small>
-        © {{ now|date:"Y" }} — Nícolas Rosenthal
-    </small>
+<footer class="site-footer">
+    <p>© {{ now|date:"Y" }}</p>
 </footer>
-
-<!-- MathJax -->
-<script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']]
-  },
-  svg: { fontCache: 'global' }
-};
-</script>
-<script
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-  async>
-</script>
-
-<!-- Mermaid -->
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>
-mermaid.initialize({ startOnLoad: true });
-
-document.querySelectorAll("code.language-mermaid").forEach(block => {
-    const div = document.createElement("div");
-    div.className = "mermaid";
-    div.textContent = block.textContent;
-    block.parentNode.replaceWith(div);
-});
-</script>
-
-{% block extra_js %}{% endblock %}
 
 </body>
 </html>

@@ -1,18 +1,14 @@
 {% extends "blog/base.html" %}
 
-{% block title %}
-{{ post.title }} — Blog
-{% endblock %}
+{% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-<article class="post">
+<article>
 
-    <h1>{{ post.title }}</h1>
-    <small>{{ post.created_at }}</small>
+<h1>{{ post.title }}</h1>
+<small>{{ post.created_at|date:"j \\d\\e F \\d\\e Y" }}</small>
 
-    <hr>
-
-    {{ post.html|safe }}
+{{ post.html|safe }}
 
 </article>
 {% endblock %}

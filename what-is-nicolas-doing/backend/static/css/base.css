@@ -1,0 +1,40 @@
+:root {
+  --max-width: 720px;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #111;
+}
+
+.site-header {
+  max-width: var(--max-width);
+  margin: 1.5rem auto 2rem auto;
+  padding: 0 1rem;
+}
+
+.site-title {
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #111;
+}
+
+.site-title:hover {
+  text-decoration: underline;
+}
+
+.content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem 4rem 1rem;
+}
+
+.site-footer {
+  max-width: var(--max-width);
+  margin: 4rem auto 2rem auto;
+  padding: 0 1rem;
+  font-size: 0.85rem;
+  color: #666;
+}

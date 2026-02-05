@@ -1,20 +1,112 @@
 {% extends "blog/base.html" %}
+{% load static %}
 
 {% block title %}
 O que o <code>nícolas-rosenthal</code> tem feito?
 {% endblock %}
 
+{% block extra_head %}
+<meta name="description" content="Blog pessoal com artigos sobre programação, projetos e experimentos técnicos">
+<link rel="canonical" href="{% url 'blog:index' %}">
+{% endblock %}
+
 {% block content %}
-<ul>
+<header class="page-header">
+    <h1>últimos posts</h1>
+    <p class="page-description">Artigos sobre desenvolvimento, tecnologia e projetos pessoais.</p>
+</header>
+
+<div class="posts-filters">
+    <div class="search-box">
+        <input type="text" placeholder="Buscar posts..." id="search-input" aria-label="Buscar posts">
+        <button type="button" id="search-button">🔍</button>
+    </div>
+    
+    <div class="filter-tags">
+        <span class="filter-label">Filtrar por:</span>
+        {% for tag in popular_tags|slice:":5" %}
+        <a href="?tag={{ tag.slug }}" class="tag-filter">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="posts-list">
     {% for post in posts %}
-        <li>
-            <a href="{{ post.get_absolute_url }}">
-                {{ post.title }}
-            </a>
-            <small>{{ post.created_at }}</small>
-        </li>
+    <article class="post-card">
+        <div class="post-card-content">
+            <h2 class="post-title">
+                <a href="{{ post.get_absolute_url }}" class="post-link">
+                    {{ post.title }}
+                </a>
+            </h2>
+            
+            <div class="post-meta">
+                <time datetime="{{ post.created_at|date:'Y-m-d' }}">
+                    {{ post.created_at|date:"d/m/Y" }}
+                </time>
+            </div>
+        </div>
+    </article>
     {% empty %}
-        <li>Nenhum post publicado ainda.</li>
+    <div class="empty-state">
+        <p>nenhum post publicado ainda.</p>
+        <p>volte em breve!</p>
+    </div>
     {% endfor %}
-</ul>
+</div>
+
+{% if is_paginated %}
+<nav class="pagination" aria-label="Navegação de posts">
+    <div class="pagination-content">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link pagination-prev">
+            ← Anterior
+        </a>
+        {% endif %}
+        
+        <div class="pagination-numbers">
+            {% for num in paginator.page_range %}
+                {% if page_obj.number == num %}
+                <span class="pagination-current">{{ num }}</span>
+                {% else %}
+                <a href="?page={{ num }}" class="pagination-number">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="pagination-link pagination-next">
+            Próxima →
+        </a>
+        {% endif %}
+    </div>
+    
+    <p class="pagination-info">
+        Página {{ page_obj.number }} de {{ paginator.num_pages }}
+    </p>
+</nav>
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+    
+    searchButton.addEventListener('click', function() {
+        const query = searchInput.value.trim();
+        if (query) {
+            window.location.href = `?search=${encodeURIComponent(query)}`;
+        }
+    });
+    
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchButton.click();
+        }
+    });
+});
+</script>
 {% endblock %}
