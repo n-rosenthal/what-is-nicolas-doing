@@ -1,4 +1,11 @@
-# views.py
+"""
+    `what-is-nicolas-doing/backend/blog/views.py`
+    
+    Views para o blog:
+    
+    - `index`:           Renderiza a página de entrada do blog.
+    - `post_detail`:     Renderiza uma página de detalhe de um post.
+"""
 from django.shortcuts import render, get_object_or_404
 from .models import Post
 
@@ -30,15 +37,35 @@ def post_detail(request, slug):
     Se o post não existir ou não estiver publicado, lança um 404.
     O template utilizado é blog/post_detail.html e utiliza o objeto post para renderizar o conteúdo do post.
     """
-    post = get_object_or_404(
-        Post,
-        slug=slug,
-        published=True,
+    post = get_object_or_404(Post, slug=slug, published=True)
+
+    previous_post = (
+        Post.objects.filter(
+            published=True,
+            created_at__lt=post.created_at
+        )
+        .order_by("-created_at")
+        .first()
     )
 
-    context = {
-        "post": post,
-        # o template usa {{ post.html|safe }}
-    }
+    next_post = (
+        Post.objects.filter(
+            published=True,
+            created_at__gt=post.created_at
+        )
+        .order_by("created_at")
+        .first()
+    )
 
-    return render(request, "blog/post_detail.html", context)
+    related_posts = (
+        Post.objects
+        .filter(published=True)
+        .exclude(id=post.id)[:3]
+    )
+
+    return render(request, "blog/post_detail.html", {
+        "post": post,
+        "previous_post": previous_post,
+        "next_post": next_post,
+        "related_posts": related_posts,
+    })

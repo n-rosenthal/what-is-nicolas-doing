@@ -1,3 +1,9 @@
+"""
+    `what-is-nicolas-doing/backend/config/wsgi.py`
+
+    Configuração WSGI para o projeto Django.
+"""
+
 import os
 
 from django.core.wsgi import get_wsgi_application

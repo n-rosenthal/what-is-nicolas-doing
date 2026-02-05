@@ -1,4 +1,8 @@
-# admin.py
+"""
+    `what-is-nicolas-doing/backend/blog/admin.py`
+    
+    Admin Django para a aplicação Blog.
+"""
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django.utils.text import slugify

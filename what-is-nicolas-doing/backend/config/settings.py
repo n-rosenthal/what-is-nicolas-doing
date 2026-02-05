@@ -1,4 +1,8 @@
-# what-is-nicolas-doing/backend/config/settings.py
+"""
+    `what-is-nicolas-doing/backend/config/settings.py`
+    
+    Configurações para o projeto Django.
+"""
 import os
 from pathlib import Path
 
@@ -6,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'sua-chave-secreta-aqui'  # Em produção, use variáveis de ambiente
 
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = True
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
@@ -87,6 +91,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 STORAGES = {
     "staticfiles": {

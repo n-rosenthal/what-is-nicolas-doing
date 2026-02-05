@@ -1,4 +1,8 @@
-# blog/feeds.py
+"""
+    `what-is-nicolas-doing/backend/blog/feeds.py`
+    
+    Feed RSS para o blog.
+"""
 from django.contrib.syndication.views import Feed
 from .models import Post
 

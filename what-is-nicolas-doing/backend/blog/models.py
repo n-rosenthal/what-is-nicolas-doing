@@ -1,7 +1,9 @@
 """
     `what-is-nicolas-doing/backend/blog/models.py`
     
-    Model para o blog - COM MAIS CONTROLE
+    Definição dos modelos de dados para o blog.
+    
+    `Post` é a representação de uma postagem no blog.
 """
 
 from django.db import models

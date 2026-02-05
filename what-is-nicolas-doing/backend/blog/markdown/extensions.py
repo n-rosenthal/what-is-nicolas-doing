@@ -11,7 +11,8 @@ MARKDOWN_EXTENSIONS = [
 MARKDOWN_EXTENSION_CONFIGS = {
     "codehilite": {
         "guess_lang": False,
-        "css_class": "codehilite",
+        "use_pygments": True,
+        "noclasses": False,  # 🔑 gera classes CSS
     },
     "toc": {
         "permalink": True,
